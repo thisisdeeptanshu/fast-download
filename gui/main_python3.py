@@ -4,16 +4,16 @@ import os
 app = Flask(__name__)
 
 def download(urls):
-	command = 'python3 yt-dlp -o downloads/"%(title)s-%(id)s.%(ext)s" '
+	command = 'python3 yt-dlp -o downloads/videos/"%(title)s-%(id)s.%(ext)s" '
 	for url in urls:
-		command += f"\"{url}\""
-	os.system(command)
+		new_command = command + f"\"{url}\""
+		os.system(new_command)
 
 def downloadmp3(urls):
-	command = 'python3 yt-dlp --extract-audio --audio-format mp3 -o downloads/"%(title)s-%(id)s.%(ext)s" '
+	command = 'python3 yt-dlp --extract-audio --audio-format mp3 -o downloads/audios/"%(title)s-%(id)s.%(ext)s" '
 	for url in urls:
-		command += f"\"{url}\""
-	os.system(command)
+		new_command = command + f"\"{url}\""
+		os.system(new_command)
 
 @app.route("/", methods=["GET", "POST"])
 def home():
