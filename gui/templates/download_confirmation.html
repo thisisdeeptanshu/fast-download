@@ -1,0 +1,9 @@
+<form method="post" action="#">
+	<input type="submit" value="Download" name="download">
+	<input type="submit" value="Download MP3" name="download-mp3"><br><br>
+	{% for i in range(0, size) %}
+	[{{i + 1}}] <a href="{{urls[i]}}">{{titles[i]}}</a>
+	<input type="submit" value="X" name="{{i}}">
+	<br><br>
+	{% endfor %}
+</form>
