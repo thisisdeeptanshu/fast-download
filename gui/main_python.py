@@ -1,16 +1,22 @@
 from flask import Flask, render_template, request, redirect
 import os
+import tkinter as tk
+from tkinter import filedialog
 
 app = Flask(__name__)
 
+root = tk.Tk()
+root.withdraw()
+dir_path = filedialog.askdirectory()
+
 def download(urls):
-	command = 'python yt-dlp -o downloads/videos/"%(title)s-%(id)s.%(ext)s" '
+	command = 'python yt-dlp -o ' + dir_path + '/videos/"%(title)s.%(ext)s" '
 	for url in urls:
 		new_command = command + f"\"{url}\""
 		os.system(new_command)
 
 def downloadmp3(urls):
-	command = 'python yt-dlp --extract-audio --audio-format mp3 -o downloads/audios/"%(title)s-%(id)s.%(ext)s" '
+	command = 'python yt-dlp --extract-audio --audio-format mp3 -o ' + dir_path + '/audios/"%(title)s-%(id)s.%(ext)s" '
 	for url in urls:
 		new_command = command + f"\"{url}\""
 		os.system(new_command)
@@ -61,4 +67,4 @@ def home():
 			return render_template("download_confirmation.html", urls=urls, titles=titles, size=int(args["size"]))
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
