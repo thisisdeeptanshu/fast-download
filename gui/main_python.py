@@ -16,7 +16,7 @@ def download(urls):
 		os.system(new_command)
 
 def downloadmp3(urls):
-	command = 'python yt-dlp --extract-audio --audio-format mp3 -o ' + dir_path + '/audios/"%(title)s-%(id)s.%(ext)s" '
+	command = 'python yt-dlp --extract-audio --audio-format mp3 -o ' + dir_path + '/audios/"%(title)s.%(ext)s" '
 	for url in urls:
 		new_command = command + f"\"{url}\""
 		os.system(new_command)
